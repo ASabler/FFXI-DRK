@@ -42,26 +42,9 @@
 		</set>
 	</sets>
 
-	<init>
-		<if p_status="engaged">
-			<setvar name="autows" value="1"/>
-			<else>
-				<setvar name="autows" value="0"/>
-			</else>
-		</if>
-	</init>
-
 	<idlegear> <!-- Rules of engagement -->
 		<if p_status="engaged">
 			<equip set="TP" />
-		</if>
-
-		<if advanced="$autows=1">
-			<if p_tp=">999">
-			<if at_hpp=">=1">
-				<commmand>/ws "Catastrophe" &lt;t&gt;</commmand>
-			</if>
-			</if>
 		</if>
 	</idlegear>
 
