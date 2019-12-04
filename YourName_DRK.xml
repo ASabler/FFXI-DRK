@@ -1,0 +1,74 @@
+<ashitacast>
+	<settings> <!--Contains settings specific to this xml, must be set to true/false to override default-->
+		<buffupdate>false</buffupdate> <!--Determines if your idlegear will be parsed when you gain/lose a buff. Default: TRUE -->
+		<statusupdate>true</statuspdate> <!--Determines if your idlegear will be parsed when you change status(stand/rest/engage/etc).  Default: TRUE -->
+		<hpupdate>false</hpupdate> <!--Determines if your idlegear will be parsed when your HP % changes.  Default: TRUE -->
+		<autoupdate>true</autoupdate> <!--Determines if your idlegear will be parsed on outgoing status updates(roughly every 350ms).  Default: TRUE-->
+	</settings>
+
+	<sets>
+		<set name="TP"> <!-- Basic TP gain set -->
+			<sub>Tzacab Grip</sub>
+			<ammo>Hasty Pinion +1</ammo>
+			<head>Flam. Zucchetto +1</head>
+			<body>Flamma Korazin</body>
+			<hands>Flamma Manopolas</hands>
+			<legs>Flamma Dirs</legs>
+			<feet>Flam. Gambieras +1</feet>
+			<neck>Agitator's Collar</neck>
+			<waist>Kentarch Belt +1</waist>
+			<ear1>Steelflash Earring</ear1>
+			<ear2>Bladeborn Earring</ear2>
+			<ring1>Mouflon Ring</ring1>
+			<ring2>Flamma Ring</ring2>
+			<back augment="S25546327062191">Ankou's Mantle</back>
+		</set>
+
+		<set name="Cata"> <!-- Catastrophe WSD set -->
+			<sub>Tzacab Grip</sub>
+			<ammo>Hasty Pinion +1</ammo>
+			<head>Flam. Zucchetto +1</head>
+			<body>Flamma Korazin</body>
+			<hands>Flamma Manopolas</hands>
+			<legs>Flamma Dirs</legs>
+			<feet>Flam. Gambieras +1</feet>
+			<neck>Fotia Gorget</neck>
+			<waist>Fotia Belt</waist>
+			<ear1>Steelflash Earring</ear1>
+			<ear2>Bladeborn Earring</ear2>
+			<ring1>Mouflon Ring</ring1>
+			<ring2>Flamma Ring</ring2>
+			<back augment="S25546327062191">Ankou's Mantle</back>
+		</set>
+	</sets>
+
+	<init>
+		<if p_status="engaged">
+			<setvar name="autows" value="1"/>
+			<else>
+				<setvar name="autows" value="0"/>
+			</else>
+		</if>
+	</init>
+
+	<idlegear> <!-- Rules of engagement -->
+		<if p_status="engaged">
+			<equip set="TP" />
+		</if>
+
+		<if advanced="$autows=1">
+			<if p_tp=">999">
+			<if at_hpp=">=1">
+				<commmand>/ws "Catastrophe" &lt;t&gt;</commmand>
+			</if>
+			</if>
+		</if>
+	</idlegear>
+
+	<weaponskill> <!-- WS conditions -->
+		<if ad_name="Catastrophe">
+			<equip set="Cata" />
+		</if>
+	</weaponskill>
+
+</ashitacast>
